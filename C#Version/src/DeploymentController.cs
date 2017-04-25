@@ -101,7 +101,7 @@ static class DeploymentController
             // Adding input handler when player click the back button then it will return to home scene 
             else if (UtilityFunctions.IsMouseInRectangle(BACK_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
             {
-                GameController.SwitchState(GameState.ViewingMainMenu);
+                GameController.AddNewState(GameState.ViewingGameMenu);
             }
         }
     }

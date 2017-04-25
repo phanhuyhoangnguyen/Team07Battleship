@@ -22,13 +22,17 @@ static class DiscoveryController
     /// </remarks>
     public static void HandleDiscoveryInput()
     {
+        if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE))
+        {
+            GameController.AddNewState(GameState.ViewingGameMenu);
+        }
         // when the player left-click at the button position, the screen will go back to home screen
         if (SwinGame.MouseClicked(MouseButton.LeftButton))
         {
 
             if (UtilityFunctions.IsMouseInRectangle(30, 72, 607, 72))
             {
-                GameController.SwitchState(GameState.ViewingMainMenu);
+                GameController.AddNewState(GameState.ViewingGameMenu);
             }
             else
             {
