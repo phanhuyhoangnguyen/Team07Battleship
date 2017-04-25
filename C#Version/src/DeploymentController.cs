@@ -29,6 +29,11 @@ static class DeploymentController
 
     private const int LEFT_RIGHT_BUTTON_LEFT = 350;
     private const int RANDOM_BUTTON_LEFT = 547;
+    
+    //mute n unmute button rectangle
+    private const int MUTE_BUTTON_LEFT = 470;
+
+    private const int UNMUTE_BUTTON_LEFT = 470;
 
     private const int RANDOM_BUTTON_WIDTH = 51;
 
@@ -88,7 +93,8 @@ static class DeploymentController
             }
             else if (UtilityFunctions.IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
             {
-                _currentDirection = Direction.LeftRight;
+                //change to updown direction
+                _currentDirection = Direction.UpDown;
             }
             else if (UtilityFunctions.IsMouseInRectangle(LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
             {
@@ -102,6 +108,11 @@ static class DeploymentController
             else if (UtilityFunctions.IsMouseInRectangle(BACK_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
             {
                 GameController.AddNewState(GameState.ViewingGameMenu);
+            }
+            //Adding input handler for mute/unmute button
+            else if (UtilityFunctions.IsMouseInRectangle(MUTE_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
+            {
+                GameController.ToggleMute();
             }
         }
     }
@@ -198,6 +209,11 @@ static class DeploymentController
         }
 
         SwinGame.DrawBitmap(GameResources.GameImage("RandomButton"), RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP);
+        //Draw the mute or unmute button
+        if (GameController.mute)
+            SwinGame.DrawBitmap(GameResources.GameImage("MuteButton"), MUTE_BUTTON_LEFT, TOP_BUTTONS_TOP);
+        else
+            SwinGame.DrawBitmap(GameResources.GameImage("UnMuteButton"), UNMUTE_BUTTON_LEFT, TOP_BUTTONS_TOP);
 
         UtilityFunctions.DrawMessage();
     }
