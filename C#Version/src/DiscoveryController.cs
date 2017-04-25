@@ -12,7 +12,11 @@ using SwinGameSDK;
 /// </summary>
 static class DiscoveryController
 {
+    //Add the mute and unmute button coordinate
+    private const int MUTE_BUTTON_LEFT = 350;
 
+    private const int UNMUTE_BUTTON_LEFT = 350;
+    private const int TOP_BUTTONS_TOP = 72;
     /// <summary>
     /// Handles input during the discovery phase of the game.
     /// </summary>
@@ -26,13 +30,17 @@ static class DiscoveryController
         {
             GameController.AddNewState(GameState.ViewingGameMenu);
         }
-        // when the player left-click at the button position, the screen will go back to home screen
         if (SwinGame.MouseClicked(MouseButton.LeftButton))
         {
-
+            // when the player left-click at the button position, the screen will go back to home screen
             if (UtilityFunctions.IsMouseInRectangle(30, 72, 607, 72))
             {
                 GameController.AddNewState(GameState.ViewingGameMenu);
+            }
+            //when the player left-click at the button position, the mute/unmute function will run
+            else if (UtilityFunctions.IsMouseInRectangle(MUTE_BUTTON_LEFT, TOP_BUTTONS_TOP, 47, 46))
+            {
+                GameController.ToggleMute();
             }
             else
             {
@@ -91,7 +99,13 @@ static class DiscoveryController
         SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
         SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
         SwinGame.DrawText(GameController.HumanPlayer.Missed.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
+        //draw the back button
         SwinGame.DrawBitmap(GameResources.GameImage("BackButton"), 30, 72);
+        //draw the mute/unmute button
+        if (GameController.mute)
+            SwinGame.DrawBitmap(GameResources.GameImage("MuteButton"), MUTE_BUTTON_LEFT, TOP_BUTTONS_TOP);
+        else
+            SwinGame.DrawBitmap(GameResources.GameImage("UnMuteButton"), UNMUTE_BUTTON_LEFT, TOP_BUTTONS_TOP);
     }
 
 }
