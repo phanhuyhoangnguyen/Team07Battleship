@@ -67,7 +67,8 @@ public static class GameResources
 
     private static void LoadMusic()
     {
-        NewMusic("Background", "horrordrone.mp3");
+        NewMusic("Background", "theduel_www_bensound_com.mp3");
+        NewMusic("Background1", "epic_www_bensound_com.mp3");
     }
 
     /// <summary>

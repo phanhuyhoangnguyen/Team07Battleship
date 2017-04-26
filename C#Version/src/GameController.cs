@@ -207,8 +207,9 @@ public static class GameController
 		//deploy the players
 		_theGame.AddDeployedPlayer(_human);
 		_theGame.AddDeployedPlayer(_ai);
-
-		SwitchState(GameState.Discovering);
+        //Battle sound
+        SwinGame.PlayMusic(GameResources.GameMusic("Background1"));
+        SwitchState(GameState.Discovering);
 	}
 
 	/// <summary>
@@ -380,7 +381,8 @@ public static class GameController
 	//to diplay AI level in MenuController
 	public static int ReturnAISetting()
 	{
-		return (int)_aiSetting;	}
+		return (int)_aiSetting;
+	}
 }
 
 //=======================================================

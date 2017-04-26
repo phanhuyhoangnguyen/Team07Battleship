@@ -96,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\*.dll" />
+    <Content Include="Resources\sounds\epic_www_bensound_com.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\sounds\theduel_www_bensound_com.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\*">

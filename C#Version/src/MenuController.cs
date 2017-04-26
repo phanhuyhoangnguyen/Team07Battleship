@@ -341,13 +341,17 @@ static class MenuController
 			GameController.EndCurrentState();
 				break;
 			case GAME_MENU_SURRENDER_BUTTON:
-			GameController.EndCurrentState();
-				//end game menu
+                { 
+                    //Switch back to backgournd muisc.
+                    SwinGame.PlayMusic(GameResources.GameMusic("Background"));
+                     GameController.EndCurrentState();
+                    //end game menu
+                }
 			GameController.EndCurrentState();
 				//end game
 				break;
-			case GAME_MENU_QUIT_BUTTON:
-			GameController.AddNewState(GameState.Quitting);
+			case GAME_MENU_QUIT_BUTTON: 
+                    GameController.AddNewState(GameState.Quitting);
 				break;
 		}
 	}
