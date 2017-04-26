@@ -27,6 +27,10 @@ public static class GameResources
 
     private static void LoadImages()
     {
+        //General
+        NewImage("MuteButton", "muteicon.png");
+        NewImage("UnMuteButton", "unmuteicon.png");
+
         //Backgrounds
         NewImage("Menu", "main_page.jpg");
         NewImage("Discovery", "discover.jpg");
