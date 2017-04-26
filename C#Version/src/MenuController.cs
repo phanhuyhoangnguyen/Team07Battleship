@@ -207,6 +207,38 @@ static class MenuController
 			if (SwinGame.MouseDown(MouseButton.LeftButton) & IsMouseOverMenu(i, level, xOffset)) {
 				SwinGame.DrawRectangle(HIGHLIGHT_COLOR, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
 			}
+
+			/*Feature: display AI level in the start screen*/
+			int num = 2;
+			if (_menuStructure[menu][i] == "EASY")
+			{
+				num = 0;
+				if (GameController.ReturnAISetting() == num)
+				{
+					SwinGame.DrawRectangle(Color.Yellow, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
+
+				}
+			
+			}
+			else if (_menuStructure[menu][i] == "MEDIUM")
+			{
+				num = 1;
+				if (GameController.ReturnAISetting() == num)
+				{
+					SwinGame.DrawRectangle(Color.Yellow, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
+
+				}
+			}
+			else if (_menuStructure[menu][i] == "HARD")
+			{
+				num = 2;
+				if (GameController.ReturnAISetting() == num)
+				{
+					SwinGame.DrawRectangle(Color.Yellow, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
+
+				}
+			}
+
 		}
 	}
 
@@ -285,10 +317,10 @@ static class MenuController
 	{
 		switch (button) {
 			case SETUP_MENU_EASY_BUTTON:
-			GameController.SetDifficulty(AIOption.Hard);
+				GameController.SetDifficulty(AIOption.Easy);
 				break;
 			case SETUP_MENU_MEDIUM_BUTTON:
-			GameController.SetDifficulty(AIOption.Hard);
+				GameController.SetDifficulty(AIOption.Medium);
 				break;
 			case SETUP_MENU_HARD_BUTTON:
 			GameController.SetDifficulty(AIOption.Hard);

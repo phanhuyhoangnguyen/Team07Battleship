@@ -22,7 +22,7 @@ public static class GameController
 
 	private static Stack<GameState> _state = new Stack<GameState>();
 
-	private static AIOption _aiSetting;
+	private static AIOption _aiSetting=AIOption.Hard;
 	/// <summary>
 	/// Returns the current state of the game, indicating which screen is
 	/// currently being used
@@ -377,6 +377,10 @@ public static class GameController
 		_aiSetting = setting;
 	}
 
+	//to diplay AI level in MenuController
+	public static int ReturnAISetting()
+	{
+		return (int)_aiSetting;	}
 }
 
 //=======================================================
