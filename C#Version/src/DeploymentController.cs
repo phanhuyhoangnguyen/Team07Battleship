@@ -29,8 +29,8 @@ static class DeploymentController
 
     private const int LEFT_RIGHT_BUTTON_LEFT = 350;
     private const int RANDOM_BUTTON_LEFT = 547;
-    
-    //mute n unmute button rectangle
+
+    //mute n unmute button coordinate
     private const int MUTE_BUTTON_LEFT = 470;
 
     private const int UNMUTE_BUTTON_LEFT = 470;
@@ -93,8 +93,7 @@ static class DeploymentController
             }
             else if (UtilityFunctions.IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
             {
-                //change to updown direction
-                _currentDirection = Direction.UpDown;
+				_currentDirection = Direction.UpDown;
             }
             else if (UtilityFunctions.IsMouseInRectangle(LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
             {
@@ -109,7 +108,7 @@ static class DeploymentController
             {
                 GameController.AddNewState(GameState.ViewingGameMenu);
             }
-            //Adding input handler for mute/unmute button
+            // Adding input handler when player click the mute/unmute button to mute/unmute
             else if (UtilityFunctions.IsMouseInRectangle(MUTE_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
             {
                 GameController.ToggleMute();
@@ -148,8 +147,9 @@ static class DeploymentController
                 }
                 catch (Exception ex)
                 {
-                    Audio.PlaySoundEffect(GameResources.GameSound("Error"));
-                    UtilityFunctions.Message = ex.Message;
+                    //Random rearrange
+                    //Audio.PlaySoundEffect(GameResources.GameSound("Error"));
+                    //UtilityFunctions.Message = ex.Message;
                 }
             }
         }
@@ -162,8 +162,8 @@ static class DeploymentController
     public static void DrawDeployment()
     {
 
-        // Draw Back Button 
         UtilityFunctions.DrawField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer, true);
+        // Draw Back Button 
         SwinGame.DrawBitmap(GameResources.GameImage("BackButton"), BACK_BUTTON_LEFT, TOP_BUTTONS_TOP);
 
         //Draw the Left/Right and Up/Down buttons
@@ -209,7 +209,7 @@ static class DeploymentController
         }
 
         SwinGame.DrawBitmap(GameResources.GameImage("RandomButton"), RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP);
-        //Draw the mute or unmute button
+        //draw the mute/unmute button
         if (GameController.mute)
             SwinGame.DrawBitmap(GameResources.GameImage("MuteButton"), MUTE_BUTTON_LEFT, TOP_BUTTONS_TOP);
         else

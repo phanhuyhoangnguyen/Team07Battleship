@@ -16,15 +16,14 @@ public static class GameController
 {
 
 	private static BattleShipsGame _theGame;
-	private static Player _human;
-	//mute toggle
-    	public static bool mute;
+    private static Player _human;
+    public static bool mute;
 
 	private static AIPlayer _ai;
 
 	private static Stack<GameState> _state = new Stack<GameState>();
 
-	private static AIOption _aiSetting;
+	private static AIOption _aiSetting=AIOption.Hard;
 	/// <summary>
 	/// Returns the current state of the game, indicating which screen is
 	/// currently being used
@@ -120,14 +119,12 @@ public static class GameController
 		DrawScreen();
 		SwinGame.RefreshScreen();
 	}
-	/// <summary>
-	/// Set the mute/unmute global function
-	/// </summary>
-    	public static void ToggleMute()
-    	{
-        	SwinGame.SetMusicVolume(Math.Abs(SwinGame.MusicVolume()-1));
-        	mute = !mute;
-    	}
+
+    public static void ToggleMute()
+    {
+        SwinGame.SetMusicVolume(Math.Abs(SwinGame.MusicVolume() - 1));
+        mute = !mute;
+    }
 
 	private static void PlayHitSequence(int row, int column, bool showAnimation)
 	{
@@ -135,8 +132,8 @@ public static class GameController
 			UtilityFunctions.AddExplosion(row, column);
 		}
 
-        	if (!mute)
-			Audio.PlaySoundEffect(GameResources.GameSound("Hit"));
+        if (!mute)
+            Audio.PlaySoundEffect(GameResources.GameSound("Hit"));
 
 		UtilityFunctions.DrawAnimationSequence();
 	}
@@ -147,8 +144,8 @@ public static class GameController
 			UtilityFunctions.AddSplash(row, column);
 		}
 
-		if (!mute)
-			Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
+        if (!mute)
+            Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
 
 		UtilityFunctions.DrawAnimationSequence();
 	}
@@ -175,27 +172,32 @@ public static class GameController
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				if (!mute)
-					Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+                if (!mute)
+                    Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 
 				break;
 			case ResultOfAttack.GameOver:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				if (!mute)
-					Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+                if (!mute)
+                    Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 
-			while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
+			    while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
 					SwinGame.Delay(10);
 					SwinGame.RefreshScreen();
 				}
 
-				if (HumanPlayer.IsDestroyed) {
-					if (!mute)
-						Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
-				} else {
-					if (!mute)
-						Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
-				}
+                if (!mute)
+                {
+                    if (HumanPlayer.IsDestroyed)
+                    {
+                        Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
+                    }
+                    else
+                    {
+                        Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
+                    }
+                }
+				
 
 				break;
 			case ResultOfAttack.Hit:
@@ -223,8 +225,9 @@ public static class GameController
 		//deploy the players
 		_theGame.AddDeployedPlayer(_human);
 		_theGame.AddDeployedPlayer(_ai);
-
-		SwitchState(GameState.Discovering);
+        //Battle sound
+        SwinGame.PlayMusic(GameResources.GameMusic("Background1"));
+        SwitchState(GameState.Discovering);
 	}
 
 	/// <summary>
@@ -393,6 +396,11 @@ public static class GameController
 		_aiSetting = setting;
 	}
 
+	//to diplay AI level in MenuController
+	public static int ReturnAISetting()
+	{
+		return (int)_aiSetting;
+	}
 }
 
 //=======================================================
