@@ -386,3 +386,7 @@ C:\1\Team07Battleship\C#Version\obj\x86\Debug\MyGame.exe
 C:\1\Team07Battleship\C#Version\obj\x86\Debug\MyGame.pdb
 C:\1\Team07Battleship\C#Version\bin\Debug\Resources\sounds\epic_www_bensound_com.mp3
 C:\1\Team07Battleship\C#Version\bin\Debug\Resources\sounds\theduel_www_bensound_com.mp3
+D:\QuickGit\GitHub\Team07Battleship\C#Version\bin\Debug\Resources\sounds\epic_www_bensound_com.mp3
+D:\QuickGit\GitHub\Team07Battleship\C#Version\bin\Debug\Resources\sounds\theduel_www_bensound_com.mp3
+D:\QuickGit\GitHub\Team07Battleship\C#Version\bin\Debug\Resources\images\muteicon.png
+D:\QuickGit\GitHub\Team07Battleship\C#Version\bin\Debug\Resources\images\unmuteicon.png
